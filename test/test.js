@@ -21,3 +21,19 @@ test('test parseArn', t => {
     t.equal(lambdaIntegation.lambda.functionName, 'Test');
   });
 });
+
+test('test parseArn', t => {
+  t.plan(4);
+
+  const arn = 'arn:aws:sns:us-west-2:123456789012:test-topic';
+
+  parseArn(arn, (err, obj) => {
+    t.error(err);
+
+    t.equal(obj.service, 'sns');
+
+    const { sns } = obj;
+    t.equal(typeof(sns), 'object');
+    t.equal(sns.topicName, 'test-topic');
+  });
+});
