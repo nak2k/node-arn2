@@ -8,6 +8,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "eslint": "^4.1.1",
     "tape": "^4.7.0"
   },
   "homepage": "https://github.com/nak2k/node-arn2",
@@ -22,6 +23,7 @@
     "url": "git+https://github.com/nak2k/node-arn2.git"
   },
   "scripts": {
+    "lint": "eslint lib",
     "test": "tape test/test*.js"
   },
   "files": [
