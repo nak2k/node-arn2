@@ -37,3 +37,17 @@ test('test parseArn', t => {
     t.equal(sns.topicName, 'test-topic');
   });
 });
+
+test('test parseArn for DynamoDB', t => {
+  t.plan(4);
+
+  const arn = 'arn:aws:dynamodb:us-west-2:123456789012:table/TEST';
+
+  parseArn(arn, (err, obj) => {
+    t.error(err);
+
+    t.equal(obj.service, 'dynamodb');
+    t.equal(obj.resourceType, 'table');
+    t.equal(obj.resource, 'TEST');
+  });
+});
