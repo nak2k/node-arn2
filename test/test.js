@@ -15,10 +15,10 @@ test('test parseArn', t => {
     const { apigateway } = obj;
     t.equal(typeof(apigateway), 'object');
 
-    const { lambdaIntegation } = apigateway;
-    t.equal(typeof(lambdaIntegation), 'object');
-    t.equal(typeof(lambdaIntegation.lambda), 'object');
-    t.equal(lambdaIntegation.lambda.functionName, 'Test');
+    const { lambdaIntegration } = apigateway;
+    t.equal(typeof(lambdaIntegration), 'object');
+    t.equal(typeof(lambdaIntegration.lambda), 'object');
+    t.equal(lambdaIntegration.lambda.functionName, 'Test');
   });
 });
 
