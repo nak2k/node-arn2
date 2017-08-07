@@ -1,6 +1,6 @@
 {
   "name": "arn2",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Amazon Resource Name utility",
   "author": "Kengo Nakatsuka <kengo.nakatsuka@gmail.com>",
   "bugs": {
