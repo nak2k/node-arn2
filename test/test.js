@@ -23,6 +23,27 @@ test('test parseArn', t => {
 });
 
 test('test parseArn', t => {
+  t.plan(7);
+
+  const arn = 'arn:aws:apigateway:us-west-2:s3:path/test-bucket/{folder}/{item}';
+
+  parseArn(arn, (err, obj) => {
+    t.error(err);
+
+    t.equal(obj.service, 'apigateway');
+    t.equal(obj.region, 'us-west-2');
+
+    const { apigateway } = obj;
+    t.equal(typeof(apigateway), 'object');
+
+    const { s3Integration } = apigateway;
+    t.equal(typeof(s3Integration), 'object');
+    t.equal(s3Integration.bucket, 'test-bucket');
+    t.equal(s3Integration.key, '/{folder}/{item}');
+  });
+});
+
+test('test parseArn for SNS', t => {
   t.plan(4);
 
   const arn = 'arn:aws:sns:us-west-2:123456789012:test-topic';
