@@ -1,6 +1,6 @@
 # arn2
 
-Amazon Resource Name utility.
+[Amazon Resource Name](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) utility.
 
 ## Installation
 
