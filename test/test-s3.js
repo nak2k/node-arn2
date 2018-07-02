@@ -16,7 +16,7 @@ test('test parseArn for S3', t => {
       service: 's3',
       region: '',
       account: '',
-      resource: 'my-bucket',
+      resource: undefined,
       resourceType: 'my-bucket',
       colonSeparatedResource: ['my-bucket'],
 
@@ -43,8 +43,8 @@ test('test parseArn for S3', t => {
       service: 's3',
       region: '',
       account: '',
-      resource: 'my-bucket/folder1/folder2/test.png',
-      resourceType: 'my-bucket/folder1/folder2/test.png',
+      resource: 'folder1/folder2/test.png',
+      resourceType: 'my-bucket',
       colonSeparatedResource: ['my-bucket/folder1/folder2/test.png'],
 
       s3: {
