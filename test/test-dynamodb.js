@@ -1,16 +1,12 @@
 const test = require('tape');
-const { parseArn } = require('..');
+const { parseAndDeepEqual } = require('./helper');
 
 test('test parseArn for DynamoDB', t => {
   t.plan(2);
 
-  const arn = 'arn:aws:dynamodb:us-west-2:123456789012:table/TEST';
-
-  parseArn(arn, (err, obj) => {
-    t.error(err);
-
-    t.deepEqual(obj, {
-      arn,
+  parseAndDeepEqual(t,
+    'arn:aws:dynamodb:us-west-2:123456789012:table/TEST',
+    {
       scheme: 'arn',
       partition: 'aws',
       service: 'dynamodb',
@@ -19,6 +15,6 @@ test('test parseArn for DynamoDB', t => {
       resource: 'TEST',
       resourceType: 'table',
       colonSeparatedResource: ['table/TEST'],
-    });
-  });
+    }
+  );
 });

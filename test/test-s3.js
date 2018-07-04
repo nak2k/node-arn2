@@ -1,16 +1,12 @@
 const test = require('tape');
-const { parseArn } = require('..');
+const { parseAndDeepEqual } = require('./helper');
 
 test('test parseArn for S3', t => {
   t.plan(2);
 
-  const arn = 'arn:aws:s3:::my-bucket';
-
-  parseArn(arn, (err, obj) => {
-    t.error(err);
-
-    t.deepEqual(obj, {
-      arn,
+  parseAndDeepEqual(t,
+    'arn:aws:s3:::my-bucket',
+    {
       scheme: 'arn',
       partition: 'aws',
       service: 's3',
@@ -24,20 +20,16 @@ test('test parseArn for S3', t => {
         bucket: 'my-bucket',
         key: undefined,
       },
-    });
-  });
+    }
+  );
 });
 
 test('test parseArn for S3', t => {
   t.plan(2);
 
-  const arn = 'arn:aws:s3:::my-bucket/folder1/folder2/test.png';
-
-  parseArn(arn, (err, obj) => {
-    t.error(err);
-
-    t.deepEqual(obj, {
-      arn,
+  parseAndDeepEqual(t,
+    'arn:aws:s3:::my-bucket/folder1/folder2/test.png',
+    {
       scheme: 'arn',
       partition: 'aws',
       service: 's3',
@@ -51,6 +43,6 @@ test('test parseArn for S3', t => {
         bucket: 'my-bucket',
         key: 'folder1/folder2/test.png',
       },
-    });
-  });
+    }
+  );
 });

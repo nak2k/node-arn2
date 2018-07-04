@@ -1,16 +1,12 @@
 const test = require('tape');
-const { parseArn } = require('..');
+const { parseAndDeepEqual } = require('./helper');
 
 test('test parseArn for API Gateway', t => {
   t.plan(2);
 
-  const arn = 'arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:123456789012:function:Test/invocations';
-
-  parseArn(arn, (err, obj) => {
-    t.error(err);
-
-    t.deepEqual(obj, {
-      arn,
+  parseAndDeepEqual(t,
+    'arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:123456789012:function:Test/invocations',
+    {
       scheme: 'arn',
       partition: 'aws',
       service: 'apigateway',
@@ -38,20 +34,16 @@ test('test parseArn for API Gateway', t => {
           },
         }
       },
-    });
-  });
+    }
+  );
 });
 
 test('test parseArn for API Gateway', t => {
   t.plan(2);
 
-  const arn = 'arn:aws:apigateway:us-west-2:s3:path/test-bucket/{folder}/{item}';
-
-  parseArn(arn, (err, obj) => {
-    t.error(err);
-
-    t.deepEqual(obj, {
-      arn,
+  parseAndDeepEqual(t,
+    'arn:aws:apigateway:us-west-2:s3:path/test-bucket/{folder}/{item}',
+    {
       scheme: 'arn',
       partition: 'aws',
       service: 'apigateway',
@@ -67,6 +59,6 @@ test('test parseArn for API Gateway', t => {
           key: '/{folder}/{item}',
         }
       },
-    });
-  });
+    }
+  );
 });
