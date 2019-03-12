@@ -5,7 +5,7 @@
 ## Installation
 
 ```
-npm i arn2 -S
+npm i arn2
 ```
 
 ## Usage
